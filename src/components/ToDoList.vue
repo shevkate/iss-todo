@@ -5,13 +5,19 @@ import ToDoItem from "@/components/ToDoItem.vue";
 
 defineProps({
   todos: {type: Array as PropType<Todo[]>, required: true},
+  modelValue: {type: String, required:true}
     })
 
-defineEmits([
+const emits = defineEmits([
   'clickTodo',
   'removeTodo',
-  'editTodo'
+  'editTodo',
+  'update:modelValue'
 ])
+
+const updateValue = (value: string): void => {
+  emits('update:modelValue', value);
+}
 
 </script>
 
@@ -21,6 +27,8 @@ defineEmits([
       v-for="todo in todos"
       :key="todo.id"
       :todo="todo"
+      :value="modelValue"
+      @input="updateValue($event.target.value)"
       @click-todo="$emit('clickTodo', todo.id)"
       @remove-todo="$emit('removeTodo', todo.id)"
       @edit-todo="$emit('editTodo', todo)"

@@ -4,6 +4,7 @@ import {PropType, defineEmits, defineProps} from 'vue';
 
 defineProps({
   todo: { type: Object as PropType<Todo>, required: true}
+
 })
 
 defineEmits([
@@ -25,9 +26,9 @@ defineEmits([
     <button class="todo-item__button" @click.stop="$emit('removeTodo', todo.id)">
       <i class="bi bi-trash3"></i>
     </button>
-<!--    <button class="todo-item__button" @click.stop="$emit('editTodo', todo)">-->
-<!--      <i class="bi bi-pencil"></i>-->
-<!--    </button>-->
+    <button class="todo-item__button" @click.stop="$emit('editTodo', todo)">
+      <i class="bi bi-pencil"></i>
+    </button>
   </li>
 </template>
 
@@ -43,10 +44,6 @@ defineEmits([
   transition: box-shadow 0.2s;
   cursor: pointer;
   font-size: 1.6rem;
-}
-
-.todo-item--editing {
-  border-color: red
 }
 
 .todo-item:hover {

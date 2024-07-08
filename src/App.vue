@@ -6,13 +6,20 @@
   />
   <main class="main">
 <ToDoList
+    v-model="selectedTodo.text"
     :todos="filteredTodos"
     @click-todo="clickTodo"
     @remove-todo="removeTodo"
-
+    @edit-todo="editTodo"
 />
+
+    {{selectedTodo.text}}
+    <br/>
+
+    {'{edited'}}
+    {{editedTodo.text}}
   </main>
-  <NewToDo @add-new-to-do="addNewToDo"/>
+  <NewToDo @add-new-to-do="addNewToDo" v-model="editedTodo.text"/>
   <Footer :status="status"/>
 </template>
 
@@ -23,8 +30,7 @@ import ToDoList from "@/components/ToDoList.vue";
 import FiltersBar from "@/components/FiltersBar.vue";
 import {Todo} from './types/Todo';
 import {Filter} from './types/Filter';
-import type {ComputedRef, Ref} from 'vue'
-import {computed, ref} from "vue";
+import {computed, ref, onMounted, ComputedRef, Ref, reactive} from "vue";
 import NewToDo from "@/components/NewToDo.vue";
 
 let items: Ref<Todo[]> | ComputedRef<Todo[]> | Todo[] = [
@@ -34,14 +40,16 @@ let items: Ref<Todo[]> | ComputedRef<Todo[]> | Todo[] = [
 ];
 let todos: Ref<Todo[]> = ref(items);
 
+let clonedTodos: Todo[] = JSON.parse(JSON.stringify(items));
+
 let activeFilter: Ref<Filter> = ref('All');
 
 const activeTodos: ComputedRef<Todo[]> = computed(() => {
-  return todos.value.filter((todo: Todo) => !todo.done)
+  return clonedTodos.filter((todo: Todo) => !todo.done)
 });
 
 const doneTodos: ComputedRef<Todo[]> = computed(() => {
-  return todos.value.filter((todo: Todo) => todo.done)
+  return clonedTodos.filter((todo: Todo) => todo.done)
 });
 
 const filteredTodos: ComputedRef<Todo[]> | Ref<Todo[]>  = computed(() => {
@@ -52,7 +60,7 @@ const filteredTodos: ComputedRef<Todo[]> | Ref<Todo[]>  = computed(() => {
       return doneTodos.value
     case 'All':
     default:
-      return todos.value
+      return clonedTodos
   }
 })
 
@@ -63,12 +71,35 @@ const status: ComputedRef<Status> = computed(() => {
   }
 })
 
+let editedTodo: Ref<{}> = ref({});
+let selectedTodo: {} = {};
+
+const editTodo = (todo: Todo): void => {
+  selectedTodo = (<any>Object).assign({}, todo);
+  editedTodo.value = todo
+  // console.log(selectedTodo)
+  // console.log(editedTodo)
+}
+
 const addNewToDo = (todo: Todo): void => {
-  todos.value.push(todo)
+  // console.log(selectedTodo)
+  // console.log(editedTodo)
+  if(todo.text) {
+    console.log(todo.text)
+    console.log(editedTodo)
+    let updatedTodo = JSON.parse(JSON.stringify(todo))
+    console.log(updatedTodo)
+   selectedTodo = JSON.parse(JSON.stringify(updatedTodo))
+    selectedTodo.text = ''
+    //console.log(selectedTodo)
+  } else {
+    clonedTodos.push(todo)
+    localStorage.setItem('todos', JSON.stringify(clonedTodos));
+  }
 }
 
 const clickTodo = (id: number): void => {
-  const selectedTodo: Todo = todos.value.filter((todo: Todo) => todo.id === id)[0];
+  const selectedTodo: Todo = clonedTodos.filter((todo: Todo) => todo.id === id)[0];
   if(selectedTodo) {
     selectedTodo.done = !selectedTodo.done
   }
@@ -77,15 +108,9 @@ const clickTodo = (id: number): void => {
 
 const removeTodo = (id: number) => {
   todos.value = todos.value.filter((todo: Todo) => todo.id !== id)
+  localStorage.setItem('todos', JSON.stringify(clonedTodos));
 }
 
-let editedTodo: Ref<Todo> = ref(null);
-let editedTodoText: Ref<string> = ref('');
-
-// const editTodo = (todo: Todo): void => {
-//   editedTodo.value = todo
-//   editedTodoText.value = todo.text
-// }
 //
 // const updateTodo = (todo: Todo): void => {
 //   if(!editedTodo.value) {
@@ -100,6 +125,10 @@ let editedTodoText: Ref<string> = ref('');
 const setFilter = (filter: Filter): void => {
   activeFilter.value = filter
 }
+
+onMounted(() => {
+  JSON.parse(localStorage.getItem('todos'));
+})
 </script>
 
 <style scoped>
