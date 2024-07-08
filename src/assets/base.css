@@ -1,0 +1,41 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+
+:root {
+  --font-family-main: 'Montserrat', sans-serif;
+
+  --font-size-s: 12px;
+  --font-line-s: 18px;
+  --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+
+  --font-size-m: 14px;
+  --font-line-m: 20px;
+  --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+
+  --font-size-lg: 24px;
+  --font-line-lg: 32px;
+  --font-lg: var(--font-size-lg) / var(--font-line-lg) var(--font-family-main);
+
+  --bg-color: #FFFEFC;
+  --base-font-color: #2C3136;
+  --primary-color: #08A652;
+  --secondary-color: #e3e3e3;
+  --light-color: #f0f0f0;
+  --color-border: #6e6e6e;
+
+  --section-gap: 20px;
+
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-color);
+}
+
+* {
+  box-sizing: border-box;
+}

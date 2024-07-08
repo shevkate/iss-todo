@@ -1,0 +1,27 @@
+<script setup lang="ts">
+import {defineEmits, defineProps, PropType} from "vue";
+import {Todo} from "@/types/Todo.js";
+import ToDoItem from "@/components/ToDoItem.vue";
+
+defineProps({
+  todos: {type: Array as PropType<Todo[]>, required: true},
+    })
+
+defineEmits([
+  'clickTodo',
+  'removeTodo'
+])
+
+</script>
+
+<template>
+<ul>
+  <ToDoItem
+      v-for="todo in todos"
+      :key="todo.id"
+      :todo="todo"
+      @click-todo="$emit('clickTodo', todo.id)"
+      @remove-todo="$emit('removeTodo', todo.id)"
+  />
+</ul>
+</template>
