@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Todo } from '@/types/Todo';
-import { PropType, defineEmits, defineProps } from 'vue';
+import {PropType, defineEmits, defineProps} from 'vue';
 
 defineProps({
   todo: { type: Object as PropType<Todo>, required: true}
@@ -8,27 +8,33 @@ defineProps({
 
 defineEmits([
     'clickTodo',
-    'removeTodo'
+    'removeTodo',
+    'editTodo'
 ])
 
 </script>
 
 <template>
-  <li class="todo-item" :class="{'todo-item--done': todo.done}" @click="$emit('clickTodo', todo.id)">
+  <li class="todo-item"
+      :class="{'todo-item--done': todo.done}"
+      @click="$emit('clickTodo', todo.id)">
     <div class="todo-item__status">
       <i class="bi bi-check2"></i>
     </div>
     <span class="todo-item__text">{{ todo.text }}</span>
-    <button class="todo-item__remove-button" @click.stop="$emit('removeTodo', todo.id)">
+    <button class="todo-item__button" @click.stop="$emit('removeTodo', todo.id)">
       <i class="bi bi-trash3"></i>
     </button>
+<!--    <button class="todo-item__button" @click.stop="$emit('editTodo', todo)">-->
+<!--      <i class="bi bi-pencil"></i>-->
+<!--    </button>-->
   </li>
 </template>
 
 <style scoped>
 .todo-item {
   display: grid;
-  grid-template-columns: 2.4rem 1fr 1.6rem;
+  grid-template-columns: 2.8rem 1fr 1.6rem 1.6rem;
   align-items: center;
   gap: 1.6rem;
   padding: 1.6rem 2rem;
@@ -37,6 +43,10 @@ defineEmits([
   transition: box-shadow 0.2s;
   cursor: pointer;
   font-size: 1.6rem;
+}
+
+.todo-item--editing {
+  border-color: red
 }
 
 .todo-item:hover {
@@ -76,17 +86,18 @@ defineEmits([
   display: block;
 }
 
-.todo-item__remove-button {
+.todo-item__button
+{
   opacity: 0;
   color: var(--color-border);
   transition: opacity 0.2s;
 }
 
-.todo-item:hover .todo-item__remove-button {
+.todo-item:hover .todo-item__button {
   opacity: 1;
 }
 
-.todo-item__remove-button:hover {
+.todo-item__button:hover  {
   color: var(--primary-color);
 }
 </style>

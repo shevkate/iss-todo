@@ -9,6 +9,7 @@
     :todos="filteredTodos"
     @click-todo="clickTodo"
     @remove-todo="removeTodo"
+
 />
   </main>
   <NewToDo @add-new-to-do="addNewToDo"/>
@@ -20,10 +21,10 @@ import Header from "@/components/layout/Header.vue";
 import Footer, {Status} from "@/components/layout/Footer.vue";
 import ToDoList from "@/components/ToDoList.vue";
 import FiltersBar from "@/components/FiltersBar.vue";
-import { Todo } from './types/Todo';
-import { Filter } from './types/Filter';
-import { computed, ref } from "vue";
-import type { ComputedRef, Ref } from 'vue'
+import {Todo} from './types/Todo';
+import {Filter} from './types/Filter';
+import type {ComputedRef, Ref} from 'vue'
+import {computed, ref} from "vue";
 import NewToDo from "@/components/NewToDo.vue";
 
 let items: Ref<Todo[]> | ComputedRef<Todo[]> | Todo[] = [
@@ -77,6 +78,24 @@ const clickTodo = (id: number): void => {
 const removeTodo = (id: number) => {
   todos.value = todos.value.filter((todo: Todo) => todo.id !== id)
 }
+
+let editedTodo: Ref<Todo> = ref(null);
+let editedTodoText: Ref<string> = ref('');
+
+// const editTodo = (todo: Todo): void => {
+//   editedTodo.value = todo
+//   editedTodoText.value = todo.text
+// }
+//
+// const updateTodo = (todo: Todo): void => {
+//   if(!editedTodo.value) {
+//     return;
+//   } else if (!todo.text) {
+//     removeTodo(todo.id)
+//   }
+//   editedTodo.value = null;
+//   todo.text = editedTodoText.value.trim();
+// }
 
 const setFilter = (filter: Filter): void => {
   activeFilter.value = filter

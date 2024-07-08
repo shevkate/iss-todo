@@ -9,7 +9,8 @@ defineProps({
 
 defineEmits([
   'clickTodo',
-  'removeTodo'
+  'removeTodo',
+  'editTodo'
 ])
 
 </script>
@@ -22,6 +23,7 @@ defineEmits([
       :todo="todo"
       @click-todo="$emit('clickTodo', todo.id)"
       @remove-todo="$emit('removeTodo', todo.id)"
+      @edit-todo="$emit('editTodo', todo)"
   />
 </ul>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <section class="add-todo">
-    <div
+    <form
         v-if="isVisible"
         class="add-todo__item"
         @submit.prevent="$emit('addNewToDo',{
@@ -19,7 +19,7 @@
         <input v-model="todoText" class="input" />
       </div>
       <button class="button button--filled">Add task</button>
-    </div>
+    </form>
     <button
         v-else
         class="add-todo__show-item-button"
@@ -56,7 +56,7 @@ const closeNewToDo = () => {
 <style scoped>
 .add-todo {
   display: grid;
-  gap: 1.6rem;
+  gap: 1.2rem;
 }
 
 .add-todo__show-item-button {
