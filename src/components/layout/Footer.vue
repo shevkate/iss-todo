@@ -19,11 +19,13 @@ const pluralizeString = (count: number, noun: string, suffix = 's') =>
 <section class="footer">
   <span>
     You have finished {{status.done}} {{pluralizeString(status.done, 'task')}}!
-    There are {{status.active}} {{pluralizeString(status.active, 'task')}} to do :)
   </span>
   </section>
 </template>
 
 <style scoped>
-
+.footer {
+  font-size: 1.8rem;
+  text-align: center;
+}
 </style>

@@ -11,6 +11,7 @@
     @remove-todo="removeTodo"
 />
   </main>
+  <NewToDo @add-new-to-do="addNewToDo"/>
   <Footer :status="status"/>
 </template>
 
@@ -21,8 +22,9 @@ import ToDoList from "@/components/ToDoList.vue";
 import FiltersBar from "@/components/FiltersBar.vue";
 import { Todo } from './types/Todo';
 import { Filter } from './types/Filter';
-import {computed, ref, Ref} from "vue";
-import type {  ComputedRef } from 'vue'
+import { computed, ref } from "vue";
+import type { ComputedRef, Ref } from 'vue'
+import NewToDo from "@/components/NewToDo.vue";
 
 let items: Ref<Todo[]> | ComputedRef<Todo[]> | Todo[] = [
   { id: 0, text: 'Pet a cat', done: true },
@@ -32,7 +34,6 @@ let items: Ref<Todo[]> | ComputedRef<Todo[]> | Todo[] = [
 let todos: Ref<Todo[]> = ref(items);
 
 let activeFilter: Ref<Filter> = ref('All');
-
 
 const activeTodos: ComputedRef<Todo[]> = computed(() => {
   return todos.value.filter((todo: Todo) => !todo.done)
@@ -61,7 +62,7 @@ const status: ComputedRef<Status> = computed(() => {
   }
 })
 
-const addTodo = (todo: Todo): void => {
+const addNewToDo = (todo: Todo): void => {
   todos.value.push(todo)
 }
 

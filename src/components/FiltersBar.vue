@@ -39,7 +39,7 @@ defineEmits([
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   box-sizing: border-box;
-  border: 0.1rem solid var(--light-color);
+  border: 0.1rem solid var(--color-border);
   border-radius: 1.6rem;
 }
 

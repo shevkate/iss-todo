@@ -4,7 +4,7 @@
 
 <template>
   <header class="header">
-    <span class="logo">TODOS</span>
+    <span class="logo">Todos for ISS</span>
   </header>
 </template>
 

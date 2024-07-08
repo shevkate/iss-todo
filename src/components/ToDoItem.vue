@@ -32,26 +32,15 @@ defineEmits([
   align-items: center;
   gap: 1.6rem;
   padding: 1.6rem 2rem;
-  border: 0.1rem solid var(--light-color);
+  border: 0.1rem solid var(--color-border);
   border-radius: 1.6rem;
   transition: box-shadow 0.2s;
   cursor: pointer;
+  font-size: 1.6rem;
 }
 
 .todo-item:hover {
   box-shadow: 0 1px 20px rgb(240 240 240 / 80%);
-}
-
-.todo-item__text {
-  font-weight: 400;
-}
-
-.todo-item--high .todo-item__text {
-  font-weight: 500;
-}
-
-.todo-item--low .todo-item__text {
-  font-weight: 300;
 }
 
 .todo-item--done .todo-item__text {
@@ -89,7 +78,7 @@ defineEmits([
 
 .todo-item__remove-button {
   opacity: 0;
-  color: var(--secondary-color);
+  color: var(--color-border);
   transition: opacity 0.2s;
 }
 
