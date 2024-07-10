@@ -2,10 +2,11 @@
 import {defineEmits, defineProps, PropType} from "vue";
 import {Todo} from "@/types/Todo.js";
 import ToDoItem from "@/components/ToDoItem.vue";
+import NewToDo from "@/components/NewToDo.vue";
 
 defineProps({
-  todos: {type: Array as PropType<Todo[]>, required: true},
-  modelValue: {type: String, required:true}
+  todos: {type: Array, required: true},
+  modelValue: {type: [Object, String], required:true}
     })
 
 const emits = defineEmits([
@@ -28,7 +29,8 @@ const updateValue = (value: string): void => {
       :key="todo.id"
       :todo="todo"
       :value="modelValue"
-      @input="updateValue($event.target.value)"
+      @click="$emit('update:modelValue', modelValue);"
+      @change="updateValue($event.target.value)"
       @click-todo="$emit('clickTodo', todo.id)"
       @remove-todo="$emit('removeTodo', todo.id)"
       @edit-todo="$emit('editTodo', todo)"

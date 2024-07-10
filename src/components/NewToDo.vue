@@ -1,28 +1,23 @@
 <template>
   <section class="add-todo">
-    <form
-        class="add-todo__item"
-        @submit.prevent="$emit('addNewToDo',{
-          id: Date.now(),
-          text: modelValue,
-          done: false
-        }, todoText = '')">
+    <div
+        class="add-todo__item">
       <div class="text-input text-input--focus">
         <input
             :value="modelValue"
             @input="updateValue($event.target.value)"
             class="input" />
       </div>
-      <button class="button button--filled">Submit</button>
-    </form>
+      <button class="button button--filled"
+              @click="$emit('addNewToDo')">Submit</button>
+    </div>
+    {{modelValue}}
   </section>
 </template>
 
 <script setup lang="ts">
 import {defineEmits, ref} from "vue";
-import type { Ref, UnwrapRef } from 'vue'
-
-let todoText: Ref<UnwrapRef<string>> = ref('');
+import {Todo} from "@/types/Todo";
 
 const emit = defineEmits([
     'addNewToDo',
@@ -33,7 +28,7 @@ const updateValue = (value: string): void => {
   emit('update:modelValue', value);
 }
 defineProps({
-  modelValue: {type: String, required:true}
+  modelValue: {type: [Object, String], required:true}
 })
 
 ;
