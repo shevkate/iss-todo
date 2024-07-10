@@ -1,5 +1,5 @@
 # iss-todo
-
+Vue 3 + TS + Vite
 ISS test task with adding, removing, filtering and editing features. 
 Click on the left side of the item to mark one as done.
 Hover on the right side to edit or remove selected todo item.
