@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import {defineEmits, defineProps, PropType} from "vue";
-import {Todo} from "@/types/Todo.js";
 import ToDoItem from "@/components/ToDoItem.vue";
-import NewToDo from "@/components/NewToDo.vue";
+import { Todo } from '@/types/Todo';
 
 defineProps({
-  todos: {type: Array, required: true},
+  todos: {type: Array as PropType<Todo[]>, required: true},
   modelValue: {type: [Object, String], required:true}
     })
 

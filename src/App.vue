@@ -12,16 +12,6 @@
     @edit-todo="editTodo"
     @click-todo="clickTodo"
 />
-
-<!-- //   {///{selectedTodo.text}}-->
-    <br/>
-
-<!--    {'{edited'}}-->
-<!--//{{//editedTodo.text}}-->
-
-    <br/>------
-    {{todos}}
-    <br/>------
   </main>
   <NewToDo @add-new-to-do="addNewToDo" v-model="editedTodo.text"/>
   <Footer :status="status"/>
@@ -34,9 +24,8 @@ import ToDoList from "@/components/ToDoList.vue";
 import FiltersBar from "@/components/FiltersBar.vue";
 import {Todo} from './types/Todo';
 import {Filter} from './types/Filter';
-import {computed, ref, onMounted, ComputedRef, Ref, reactive, watch, toRaw, UnwrapRef, onUpdated} from "vue";
+import {computed, ref, onMounted, ComputedRef, Ref, watch, UnwrapRef} from "vue";
 import NewToDo from "@/components/NewToDo.vue";
-import ToDoItem from "@/components/ToDoItem.vue";
 
 let todos: Ref<Todo[]>  = ref(
     [{ id: 0, text: 'Learn the basics of Vue', completed: true },
@@ -59,7 +48,7 @@ const doneTodos: ComputedRef<Todo[]> = computed(() => {
   return todos.value.filter((todo: Todo) => todo.done)
 });
 
-const filteredTodos: ComputedRef<Todo[] | Ref<UnwrapRef<[]>>> = computed(() => {
+const filteredTodos: ComputedRef<Todo[]> = computed(() => {
   switch(activeFilter.value) {
     case 'Active':
       return activeTodos.value
@@ -119,7 +108,7 @@ const setFilter = (filter: Filter): void => {
 
 onMounted(() => {
       const savedData = JSON.parse(localStorage.getItem('todos') );
-      if (saved) {
+      if (savedData) {
         todos.value = savedData
       }
     }
