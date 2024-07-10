@@ -1,6 +1,8 @@
 # iss-todo
 
 ISS test task with adding, removing, filtering and editing features. 
+Click on the left side of the item to mark one as done.
+Hover on the right side to edit or remove selected todo item.
 
 This template should help get you started developing with Vue 3 in Vite.
 

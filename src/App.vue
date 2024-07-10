@@ -28,9 +28,9 @@ import {computed, ref, onMounted, ComputedRef, Ref, watch, UnwrapRef} from "vue"
 import NewToDo from "@/components/NewToDo.vue";
 
 let todos: Ref<Todo[]> = ref(
-    [{id: 0, text: 'Learn the basics of Vue', completed: true},
-      {id: 1, text: 'Learn the basics of Typescript', completed: false},
-      {id: 2, text: 'Subscribe to the channel', completed: false}]
+    [{id: 0, text: 'Pet a cat', completed: true},
+      {id: 1, text: 'Pet a dog', completed: false},
+      {id: 2, text: 'Pet a capybara', completed: false}]
 );
 
 const baseTodo: Todo = {

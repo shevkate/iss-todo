@@ -55,7 +55,7 @@ defineProps({
 
 .add-todo__item {
   justify-self: end;
-  font-size: 2rem;
+  font: var(--font-lg);
 }
 
 .text-input--focus {
