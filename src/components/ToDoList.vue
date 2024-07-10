@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {defineEmits, defineProps, PropType} from "vue";
 import ToDoItem from "@/components/ToDoItem.vue";
-import { Todo } from '@/types/Todo';
+import {Todo} from '@/types/Todo';
 
 defineProps({
   todos: {type: Array as PropType<Todo[]>, required: true},
-  modelValue: {type: [Object, String], required:true}
-    })
+  modelValue: {type: [Object, String], required: true}
+})
 
 const emits = defineEmits([
   'clickTodo',
@@ -22,19 +22,19 @@ const updateValue = (value: string): void => {
 </script>
 
 <template>
-<ul class="todo-list">
-  <ToDoItem
-      v-for="todo in todos"
-      :key="todo.id"
-      :todo="todo"
-      :value="modelValue"
-      @click="$emit('update:modelValue', modelValue);"
-      @change="updateValue($event.target.value)"
-      @click-todo="$emit('clickTodo', todo.id)"
-      @remove-todo="$emit('removeTodo', todo.id)"
-      @edit-todo="$emit('editTodo', todo)"
-  />
-</ul>
+  <ul class="todo-list">
+    <ToDoItem
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"
+        :value="modelValue"
+        @click="$emit('update:modelValue', modelValue);"
+        @change="updateValue($event.target.value)"
+        @click-todo="$emit('clickTodo', todo.id)"
+        @remove-todo="$emit('removeTodo', todo.id)"
+        @edit-todo="$emit('editTodo', todo)"
+    />
+  </ul>
 </template>
 
 <style scoped>

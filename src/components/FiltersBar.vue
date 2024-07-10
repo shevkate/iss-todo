@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { Filter } from '@/types/Filter';
-import { PropType, defineProps, defineEmits } from 'vue';
+import {Filter} from '@/types/Filter';
+import {PropType, defineProps, defineEmits} from 'vue';
 
 const filters: Filter[] = ['All', 'Active', 'Done'];
 
@@ -23,7 +23,7 @@ defineProps({
   activeFilter: {type: String as PropType<Filter>, required: true}
 });
 defineEmits([
-    'setFilter'
+  'setFilter'
 ]);
 
 </script>

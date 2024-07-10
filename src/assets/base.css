@@ -3,60 +3,60 @@
 
 
 :root {
-  --font-family-main: 'Montserrat', sans-serif;
+    --font-family-main: 'Montserrat', sans-serif;
 
-  --font-size-s: 12px;
-  --font-line-s: 18px;
-  --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+    --font-size-s: 12px;
+    --font-line-s: 18px;
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
 
-  --font-size-m: 14px;
-  --font-line-m: 20px;
-  --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+    --font-size-m: 14px;
+    --font-line-m: 20px;
+    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
 
-  --font-size-lg: 24px;
-  --font-line-lg: 32px;
-  --font-lg: var(--font-size-lg) / var(--font-line-lg) var(--font-family-main);
+    --font-size-lg: 24px;
+    --font-line-lg: 32px;
+    --font-lg: var(--font-size-lg) / var(--font-line-lg) var(--font-family-main);
 
-  --bg-color: #FFFEFC;
-  --base-font-color: #2C3136;
-  --primary-color: #08A652;
-  --secondary-color: #e3e3e3;
-  --light-color: #f0f0f0;
-  --color-border: #6e6e6e;
+    --bg-color: #FFFEFC;
+    --base-font-color: #2C3136;
+    --primary-color: #08A652;
+    --secondary-color: #e3e3e3;
+    --light-color: #f0f0f0;
+    --color-border: #6e6e6e;
 
-  --section-gap: 20px;
+    --section-gap: 20px;
 
 }
 
 body, html {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 6.4rem 1.2rem;
-  font: var(--font-family-main);
-  font-size: var(--font-size-m);
-  background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 6.4rem 1.2rem;
+    font: var(--font-family-main);
+    font-size: var(--font-size-m);
+    background-color: var(--bg-color);
 }
 
 button {
-  padding: 0;
-  font: inherit;
-  background-color: transparent;
-  border: none;
+    padding: 0;
+    font: inherit;
+    background-color: transparent;
+    border: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .text-input {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding: 0.8rem 1.6rem;
-  box-sizing: border-box;
-  font: inherit;
-  font-size: 1.6rem;
-  border: 0.1rem solid var(--light-color);
-  border-radius: 1.6rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 0.8rem 1.6rem;
+    box-sizing: border-box;
+    font: inherit;
+    font-size: 1.6rem;
+    border: 0.1rem solid var(--light-color);
+    border-radius: 1.6rem;
 }

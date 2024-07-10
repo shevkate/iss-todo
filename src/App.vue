@@ -1,17 +1,17 @@
 <template>
-<Header/>
+  <Header/>
   <FiltersBar
       :active-filter="activeFilter"
       @set-filter="setFilter"
   />
   <main class="main">
-<ToDoList
-    v-model="selectedTodo.text"
-    :todos="filteredTodos"
-    @remove-todo="removeTodo"
-    @edit-todo="editTodo"
-    @click-todo="clickTodo"
-/>
+    <ToDoList
+        v-model="selectedTodo.text"
+        :todos="filteredTodos"
+        @remove-todo="removeTodo"
+        @edit-todo="editTodo"
+        @click-todo="clickTodo"
+    />
   </main>
   <NewToDo @add-new-to-do="addNewToDo" v-model="editedTodo.text"/>
   <Footer :status="status"/>
@@ -27,10 +27,10 @@ import {Filter} from './types/Filter';
 import {computed, ref, onMounted, ComputedRef, Ref, watch, UnwrapRef} from "vue";
 import NewToDo from "@/components/NewToDo.vue";
 
-let todos: Ref<Todo[]>  = ref(
-    [{ id: 0, text: 'Learn the basics of Vue', completed: true },
-      { id: 1, text: 'Learn the basics of Typescript', completed: false },
-      { id: 2, text: 'Subscribe to the channel', completed: false }]
+let todos: Ref<Todo[]> = ref(
+    [{id: 0, text: 'Learn the basics of Vue', completed: true},
+      {id: 1, text: 'Learn the basics of Typescript', completed: false},
+      {id: 2, text: 'Subscribe to the channel', completed: false}]
 );
 
 const baseTodo: Todo = {
@@ -49,7 +49,7 @@ const doneTodos: ComputedRef<Todo[]> = computed(() => {
 });
 
 const filteredTodos: ComputedRef<Todo[]> = computed(() => {
-  switch(activeFilter.value) {
+  switch (activeFilter.value) {
     case 'Active':
       return activeTodos.value
     case 'Done':
@@ -78,21 +78,22 @@ const editTodo = (todo: Todo): void => {
 
 const addNewToDo = () => {
 // Editing existed
-if(selectedTodo.value.text) {
-  selectedTodo.value.text = editedTodo.value.text;
-  console.log(selectedTodo.value)
-  editedTodo.value = {};
-  selectedTodo.value = {};
-} else {
+  if (selectedTodo.value.text) {
+    selectedTodo.value.text = editedTodo.value.text;
+    console.log(selectedTodo.value)
+    editedTodo.value = {};
+    selectedTodo.value = {};
+  } else {
 // Created new one
-  (<any>Object).assign(baseTodo, editedTodo.value );
-  todos.value.push(baseTodo)
-  editedTodo.value = {}
-}}
+    (<any>Object).assign(baseTodo, editedTodo.value);
+    todos.value.push(baseTodo)
+    editedTodo.value = {}
+  }
+}
 
 const clickTodo = (id: number): void => {
   const selectedTodo: Todo = todos.value.filter((todo: Todo) => todo.id === id)[0];
-  if(selectedTodo) {
+  if (selectedTodo) {
     selectedTodo.done = !selectedTodo.done
   }
   return;
@@ -107,7 +108,7 @@ const setFilter = (filter: Filter): void => {
 }
 
 onMounted(() => {
-      const savedData = JSON.parse(localStorage.getItem('todos') );
+      const savedData = JSON.parse(localStorage.getItem('todos'));
       if (savedData) {
         todos.value = savedData
       }
@@ -118,14 +119,14 @@ watch(() => todos.value,
       localStorage.setItem('todos', JSON.stringify(newVal))
 
     }, {deep: true}
-)
+);
 
 
 </script>
 
 <style scoped>
 .main {
-    display: grid;
-    gap: 1.6rem;
+  display: grid;
+  gap: 1.6rem;
 }
 </style>

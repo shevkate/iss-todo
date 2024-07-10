@@ -7,18 +7,18 @@ export interface Status {
 }
 
 defineProps({
-  status: { type: Object as PropType<Status>, required: true}
+  status: {type: Object as PropType<Status>, required: true}
 })
 
 const pluralizeString = (count: number, noun: string, suffix = 's') =>
-  `${noun}${count !== 1 ? suffix : ''}`;
+    `${noun}${count !== 1 ? suffix : ''}`;
 
 </script>
 
 <template>
-<section class="footer">
+  <section class="footer">
   <span>
-    You have finished {{status.done}} {{pluralizeString(status.done, 'task')}}!
+    You have finished {{ status.done }} {{ pluralizeString(status.done, 'task') }}!
   </span>
   </section>
 </template>

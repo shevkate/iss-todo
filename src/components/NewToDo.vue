@@ -6,29 +6,28 @@
         <input
             :value="modelValue"
             @input="updateValue($event.target.value)"
-            class="input" />
+            class="input"/>
       </div>
       <button class="button button--filled"
-              @click="$emit('addNewToDo')">Submit</button>
+              @click="$emit('addNewToDo')">Submit
+      </button>
     </div>
-    {{modelValue}}
   </section>
 </template>
 
 <script setup lang="ts">
-import {defineEmits, ref} from "vue";
-import {Todo} from "@/types/Todo";
+import {defineEmits} from "vue";
 
 const emit = defineEmits([
-    'addNewToDo',
-    'update:modelValue'
-  ])
+  'addNewToDo',
+  'update:modelValue'
+])
 
 const updateValue = (value: string): void => {
   emit('update:modelValue', value);
 }
 defineProps({
-  modelValue: {type: [Object, String], required:true}
+  modelValue: {type: [Object, String], required: true}
 })
 
 ;

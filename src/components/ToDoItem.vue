@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { Todo } from '@/types/Todo';
+
+import {Todo} from '@/types/Todo';
 import {PropType, defineEmits, defineProps} from 'vue';
 
 defineProps({
-  todo: { type: Object as PropType<Todo>, required: true}
-
-})
+  todo: {type: Object as PropType<Todo>, required: true}
+});
 
 defineEmits([
-    'clickTodo',
-    'removeTodo',
-    'editTodo'
+  'clickTodo',
+  'removeTodo',
+  'editTodo'
 ])
 
 </script>
@@ -83,8 +83,7 @@ defineEmits([
   display: block;
 }
 
-.todo-item__button
-{
+.todo-item__button {
   opacity: 0;
   color: var(--color-border);
   transition: opacity 0.2s;
@@ -94,7 +93,7 @@ defineEmits([
   opacity: 1;
 }
 
-.todo-item__button:hover  {
+.todo-item__button:hover {
   color: var(--primary-color);
 }
 </style>

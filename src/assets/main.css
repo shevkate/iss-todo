@@ -1,9 +1,9 @@
 @import './base.css';
 
 #app {
-  display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
-  width: 40rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    width: 40rem;
 }
 
